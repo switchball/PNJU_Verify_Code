@@ -99,7 +99,7 @@ public class MainJFrame extends javax.swing.JFrame {
 		jLabelSimilarity = new javax.swing.JLabel();
 		jLabelStat = new javax.swing.JLabel();
 		jButtonMatch = new javax.swing.JButton();
-		jButton£ÎotMatch = new javax.swing.JButton();
+		jButtonNotMatch = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("pnju\u9a8c\u8bc1\u7801\u8bc6\u522b\u7cfb\u7edf - First Generation");
@@ -319,8 +319,8 @@ public class MainJFrame extends javax.swing.JFrame {
 			}
 		});
 
-		jButton£ÎotMatch.setText("\u4e0d\u5339\u914d");
-		jButton£ÎotMatch.addActionListener(new java.awt.event.ActionListener() {
+		jButtonNotMatch.setText("\u4e0d\u5339\u914d");
+		jButtonNotMatch.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButtonNotMatchActionPerformed(evt);
 			}
@@ -421,7 +421,7 @@ public class MainJFrame extends javax.swing.JFrame {
 																				28,
 																				28)
 																		.addComponent(
-																				jButton£ÎotMatch,
+																				jButtonNotMatch,
 																				javax.swing.GroupLayout.PREFERRED_SIZE,
 																				81,
 																				javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -517,7 +517,7 @@ public class MainJFrame extends javax.swing.JFrame {
 																		.addComponent(
 																				jButtonMatch)
 																		.addComponent(
-																				jButton£ÎotMatch)
+																				jButtonNotMatch)
 																		.addComponent(
 																				jButtonRefresh))
 														.addComponent(
@@ -558,8 +558,8 @@ public class MainJFrame extends javax.swing.JFrame {
 	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
 	private javax.swing.JButton jButtonMatch;
+	private javax.swing.JButton jButtonNotMatch;
 	private javax.swing.JButton jButtonRefresh;
-	private javax.swing.JButton jButton£ÎotMatch;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabelImageBinary;
 	private javax.swing.JLabel jLabelImageFixed;

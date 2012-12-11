@@ -47,7 +47,7 @@
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Component id="jButtonMatch" min="-2" pref="78" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jButtonＮotMatch" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="jButtonNotMatch" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="jButtonRefresh" min="-2" pref="77" max="-2" attributes="0"/>
                   </Group>
@@ -83,7 +83,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonMatch" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonＮotMatch" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonNotMatch" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabelStat" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -424,7 +424,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMatchActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton&#xff2e;otMatch">
+    <Component class="javax.swing.JButton" name="jButtonNotMatch">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x4e0d;&#x5339;&#x914d;"/>
       </Properties>
