@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import javax.imageio.ImageIO;
 
 /**
- * 复制图片识别的核心类
+ * 负责图片识别的核心类
  * @author Xuanxiao
  *
  */
@@ -62,7 +62,7 @@ public class Client {
 	
 	public void run() {
 //		imageOriginal = readImageFromUrl("http://p.nju.edu.cn/portal/img.html?id=123");
-		imageOriginal = readImageFromUrl("http://p.nju.edu.cn/img.html?"+Math.random());
+		imageOriginal = readImageFromUrl(urlSrc);
 //		imageOriginal = readFromFile("code.png");
 		writeToFile(imageOriginal, "code.png");
 
@@ -217,7 +217,7 @@ public class Client {
 	/**
 	 * 根据相似程度计算可信概率
 	 * @param diff 分别与0,1,...,9模板相比，像素的偏差数目
-	 * @return 图片为某个数的概率，通常在95%以上即任务可信
+	 * @return 图片为某个数的概率，通常在95%以上即认为可信
 	 */
 	double calcSimilarity(int[] diff) {
 		int min = 1000, index = -1;

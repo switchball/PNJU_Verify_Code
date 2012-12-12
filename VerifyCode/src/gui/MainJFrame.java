@@ -7,12 +7,13 @@
 package gui;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import model.Adapter;
 
 /**
- *
- * @author  __USER__
+ * GUI 界面
+ * @author Xuanxiao
  */
 public class MainJFrame extends javax.swing.JFrame {
 	int count = 0, correctCount = 0, incorrectCount = 0;
@@ -27,9 +28,13 @@ public class MainJFrame extends javax.swing.JFrame {
 		Adapter adapter = new Adapter();
 		adapter.setUrlSrc(jTextField1.getText());
 		adapter.run();
-		jLabelImageOriginal.setIcon(new ImageIcon(adapter.getOriginalImage()));
-		jLabelImageBinary.setIcon(new ImageIcon(adapter.getBinaryImage()));
-		jLabelImageFixed.setIcon(new ImageIcon(adapter.getFixedImage()));
+		if (adapter.getOriginalImage() != null) {
+			jLabelImageOriginal.setIcon(new ImageIcon(adapter.getOriginalImage()));
+			jLabelImageBinary.setIcon(new ImageIcon(adapter.getBinaryImage()));
+			jLabelImageFixed.setIcon(new ImageIcon(adapter.getFixedImage()));
+		} else {
+			JOptionPane.showMessageDialog(this, "["+jTextField1.getText()+"]无法获取图片，请试着在浏览器中打开此网址");
+		}
 		if (adapter.isSuccess()) {
 			jTextAreaImage1.setText(adapter.getResultImageContext(1));
 			jTextAreaImage2.setText(adapter.getResultImageContext(2));
