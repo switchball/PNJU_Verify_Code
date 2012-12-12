@@ -9,7 +9,11 @@ import java.util.LinkedList;
 
 import javax.imageio.ImageIO;
 
-
+/**
+ * 复制图片识别的核心类
+ * @author Xuanxiao
+ *
+ */
 public class Client {
 
 	BufferedImage imageOriginal;
@@ -65,6 +69,7 @@ public class Client {
 		int width = imageOriginal.getWidth();
 		int height = imageOriginal.getHeight();
 		
+		// 黑白化，保存到grayImage
 		grayImage = new BufferedImage(width, height,
 				BufferedImage.TYPE_BYTE_GRAY);
 		for (int i = 0; i < width; i++) {
@@ -80,10 +85,14 @@ public class Client {
 				grayImage.setRGB(i, j, rgb);
 			}
 		}
+		
+		// 修正边缘，保存到fixedImage
 		fixedImage = LifeGame.life(grayImage);
 		
+		// 批量在Console输出模板
 		LifeGame.printImage(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
+		// 横线竖线扫描
 		LinkedList<Integer> l2rList = scanFromLeftToRight(fixedImage);
 		LinkedList<Integer> u2dList = scanFromUpToDown(fixedImage);
 		
@@ -99,6 +108,7 @@ public class Client {
 		l4 = l2rList.get(6);
 		r4 = l2rList.get(7);
 		
+		// 切割图片
 		img1 = fixedImage.getSubimage(l1, u, r1 - l1, d - u);
 		img2 = fixedImage.getSubimage(l2, u, r2 - l2, d - u);
 		img3 = fixedImage.getSubimage(l3, u, r3 - l3, d - u);
@@ -109,6 +119,7 @@ public class Client {
 		writeToFile(img3, "img3.png");
 		writeToFile(img4, "img4.png");
 		
+		// 计算相似度数值（若数值过低，可以选择丢弃）
 		num1 = getSimilarNumber(img1, 0);
 		num2 = getSimilarNumber(img2, 1);
 		num3 = getSimilarNumber(img3, 2);
@@ -189,6 +200,11 @@ public class Client {
 		return index;
 	}
 	
+	/**
+	 * 获取偏差值数组
+	 * @param img 待比较的图像
+	 * @return 分别与0,1,...,9模板相比，像素的偏差数目（越小表示越接近）
+	 */
 	int[] getCompareDiffArray(BufferedImage img) {
 		int[] diff = new int[10];
 		for (int n = 0; n <= 9; n++) {
@@ -198,6 +214,11 @@ public class Client {
 		return diff;
 	}
 	
+	/**
+	 * 根据相似程度计算可信概率
+	 * @param diff 分别与0,1,...,9模板相比，像素的偏差数目
+	 * @return 图片为某个数的概率，通常在95%以上即任务可信
+	 */
 	double calcSimilarity(int[] diff) {
 		int min = 1000, index = -1;
 		for (int n = 0; n <=9; n++) {
@@ -217,6 +238,12 @@ public class Client {
 		return Math.exp(0) / sum;
 	}
 	
+	/**
+	 * 将图片做逐差比较（包括位移），返回最小像素误差
+	 * @param img 待比较图片
+	 * @param model 模板图片
+	 * @return 最小可能的像素误差
+	 */
 	static int compare(BufferedImage img, BufferedImage model) {
 		int count = 0, min = 1000, x, y, xoffset, yoffset;
 		int width = img.getWidth();
@@ -225,6 +252,8 @@ public class Client {
 		int heightModel = model.getHeight();
 		int xOffsetRelative = width - widthModel,   xStep = xOffsetRelative >= 0 ? 1 : -1;
 		int yOffsetRelative = height - heightModel, yStep = yOffsetRelative >= 0 ? 1 : -1;
+		
+		// 两个for循环遍历位移
 		for (xoffset = 0; Math.abs(xoffset) <= Math.abs(xOffsetRelative); xoffset += xStep) {
 			for (yoffset = 0; Math.abs(yoffset) <= Math.abs(yOffsetRelative); yoffset += yStep) {
 				// Compare Process
@@ -232,7 +261,6 @@ public class Client {
 				for (x = 0; x < widthModel; x++) {
 					for (y = 0; y < heightModel; y++) {
 						int xx = x + xoffset, yy = y +yoffset;
-//						if (0<=x && x<widthModel && 0<=y && y<heightModel)
 						if (0<=xx && xx<width && 0<=yy && yy<height)
 							if(img.getRGB(xx, yy) != model.getRGB(x, y)) 
 								count++;

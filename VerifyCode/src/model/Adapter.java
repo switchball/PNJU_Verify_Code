@@ -3,7 +3,11 @@ package model;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
-
+/**
+ * 用于在GUI界面和核心Client之间通信的适配器类
+ * @author Xuanxiao
+ *
+ */
 public class Adapter {
 	Client client;
 	boolean state;

@@ -1,7 +1,11 @@
 package model;
 import java.awt.image.BufferedImage;
 
-
+/**
+ * 采用生命游戏模拟的方式，柔滑边缘，试图将其转为近似的类型的功能类
+ * @author Xuanxiao
+ *
+ */
 public class LifeGame {
 	public static BufferedImage life(BufferedImage imgSrc) {
 		int x, y;
